@@ -9,7 +9,7 @@ import { ListResponseModel } from '../models/listResponseModel';
 })
 export class CarService {
 
-  apiUrl='https://localhost:44392/api/';
+  apiUrl='https://localhost:44327/api/';
   
   constructor(private httpClient: HttpClient) { }
 
