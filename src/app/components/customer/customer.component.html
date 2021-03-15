@@ -1,21 +1,17 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-
-<h3>{{title}}</h3>
-
-
-<table *ngIf="dataLoaded==true" class="table table-bordered">
+<div style="text-align:center"  aria-current="true"><h4>Müsteriler listeleniyor</h4></div>
+<table class="table">
+   
     <thead>
-        <th>Id</th>
-        <th>User Id</th>
-        <th>Company Name</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let customer of customers">
-            <td>{{customer.id}}</td>
-            <td>{{customer.userId}}</td>
-            <td>{{customer.companyName}}</td>
+        <tr>
+            <th>Müsteri Id</th>
+            <th>Müsteri Şirket</th>
+           
+        
         </tr>
-    </tbody>
-</table> 
+    </thead>
+    <tr *ngFor="let customer of customers">
+        <td>{{customer.userId}} </td>
+        <td>{{customer.companyName}}</td>
+      
+    </tr>
+    </table>
