@@ -8,7 +8,7 @@ import{Observable}from 'rxjs';
 })
 export class BrandService {
 
-  apiUrl='https://localhost:44319/api/brands/BrandList';
+  apiUrl='https://localhost:44327/api/brands/BrandList';
   constructor(private httpClient:HttpClient) { }
 
   getBrands():Observable<BrandResponseModel>{
