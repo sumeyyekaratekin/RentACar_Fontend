@@ -1,25 +1,30 @@
-<div style="text-align:center"  aria-current="true"><h4>Araçlar listeleniyor</h4></div>
+<h4>ARAÇ</h4>
 <table class="table">
-   
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model Yılı</th>
-            <th>Fiyat</th>
-            <th>Açıklama</th>
-        
-        </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Marka Adı</th>
+        <th scope="col">Renk Adı</th>
+        <th scope="col">Araba Adı</th>
+      </tr>
     </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.Id}} </td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.descriptions}}</td>
-        
-
-    </tr>
-    </table>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Marka Adı</td>
+        <td>Renk Adı</td>
+        <td>Araba Adı</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>

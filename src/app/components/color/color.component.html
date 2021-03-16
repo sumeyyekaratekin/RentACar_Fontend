@@ -1,20 +1,16 @@
-<div *ngIf="dataLoaded==false" class="spinner-grow text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
+<br>
+<div *ngIf="dataLoaded==false"  class="spinner-border text-success" role="status">
+  <span class="visually-hidden"></span>
 </div>
-<table *ngIf="dataLoaded==true" class="table ">
-    <thead class="table-info">
-        <tr>
-            <th>Renk Listesi</th>          
-        </tr>
+<table  *ngIf="dataLoaded==true" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Renk Adı</th>
+      </tr>
     </thead>
-    <thead class="table-dark">
-        <tr>
-            <th>Id</th>
-            <th>Renk</th>
-        </tr>
-    </thead>  
-    <tr *ngFor="let color of colors">
-        <td>{{color.colorId}}</td>
+    <tbody>
+      <tr *ngFor="let color of colors">
         <td>{{color.colorName}}</td>
-    </tr>
-</table>
+      </tr>
+    </tbody>
+  </table>

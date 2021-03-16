@@ -9,21 +9,20 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit {
 
-  colors:Color[] = []
-  dataLoaded=false
+  colors:Color[]=[];
+  dataLoaded=false;
 
-  constructor(private colorService: ColorService) { }
+  constructor(private colorService:ColorService) { }
 
   ngOnInit(): void {
-    this.getAllColors()
+    this.getColors();
   }
 
-  getAllColors(){
-    this.colorService.getAllColors().subscribe(response=>{
-      this.colors=response.data
-      this.dataLoaded=true
-  })
-    
+  getColors(){
+    this.colorService.getColors().subscribe((response)=>{
+      this.colors =response.data;
+      this.dataLoaded =true;
+    })
   }
 
 }
