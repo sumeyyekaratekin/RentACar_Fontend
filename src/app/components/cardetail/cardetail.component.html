@@ -7,7 +7,6 @@
       <tr>
         <th scope="col">Araba Adı</th>
         <th scope="col">Yılı</th>
-        <th scope="col">Marka Adı</th>
         <th scope="col">Renk Adı</th>
         <th scope="col">Fiyatı</th>
         <th scope="col">Açıklama</th>
@@ -15,13 +14,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let cardetail of cardetails">
-        <td>{{cardetail.carName}}</td>
-        <td>{{cardetail.modelYear}}</td>
         <td>{{cardetail.brandName}}</td>
+        <td>{{cardetail.modelYear}}</td>
         <td>{{cardetail.colorName}}</td>
-        <td>{{cardetail.dailyPrice}}</td>
-        <td>Açıklama çekiliyor. ama uzun... Sonra :) </td>
+        <td>{{cardetail.dailyPrice}} ₺</td>
+        <td>{{cardetail.description}}</td>
       </tr>
     </tbody>
   </table>
-
