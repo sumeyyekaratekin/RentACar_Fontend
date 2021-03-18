@@ -1,30 +1,35 @@
-<h4>ARAÇ</h4>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Marka Adı</th>
-        <th scope="col">Renk Adı</th>
-        <th scope="col">Araba Adı</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Marka Adı</td>
-        <td>Renk Adı</td>
-        <td>Araba Adı</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="dataLoaded == false" class="spinner-border text-danger d-flex mx-auto" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<h5>Araçlar</h5>
+
+<table *ngIf="dataLoaded == true" class="table table-bordered table-condensed table-hover">
+  
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Araba</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Renk</th>
+      <th scope="col">Model</th>
+      <th scope="col">Fiyat</th>
+      <th scope="col">Açıklama</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let car of cardetails" routerLink="/cardetail/{{ car.id }}">
+      <td>{{ car.carName }}</td>
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName }}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice }} TL</td>
+      <td>{{ car.description }}</td>
+    </tr>
+
+    <tr *ngIf="!cardetails.length">
+      <td colspan="6">Araç Bulunamadı..</td>
+    </tr>    
+  </tbody>
+
+</table>

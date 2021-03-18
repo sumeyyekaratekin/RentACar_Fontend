@@ -1,5 +1,12 @@
 export interface Customer{
-    customerId:number;
+    id:number;
     userId:number;
     companyName:string;
+}
+
+export interface CustomerDetail{
+    id:number;
+    companyName:string;
+    firstName:string;
+    lastName:string;
 }
