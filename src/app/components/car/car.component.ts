@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car, CarDetail } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { CarService } from 'src/app/services/car.service';
 
 export class CarComponent implements OnInit {
 
-  cars: Car[] = [];
   cardetails: CarDetail[] = [];
   dataLoaded = false;
 
@@ -34,7 +33,7 @@ export class CarComponent implements OnInit {
 
   getCars() {
     this.carService.getCars().subscribe((response) => {
-      this.cars = response.data;
+      this.cardetails = response.data;
       this.dataLoaded = true;
     });
   }
