@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Recap-frontend": {
+    "RentACar-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Recap",
+            "outputPath": "dist/RentACar",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Recap-frontend:build"
+            "browserTarget": "RentACar-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Recap-frontend:build:production"
+              "browserTarget": "RentACar-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Recap-frontend:build"
+            "browserTarget": "RentACar-frontend:build"
           }
         },
         "test": {
@@ -121,16 +121,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Recap-frontend:serve"
+            "devServerTarget": "RentACar-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Recap-frontend:serve:production"
+              "devServerTarget": "RentACar-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Recap-frontend"
+  "defaultProject": "RentACar-frontend"
 }
