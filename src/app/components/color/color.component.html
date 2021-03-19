@@ -1,14 +1,22 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary d-flex mx-auto" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-
-<ul *ngIf="dataLoaded==true" class="list-group">
-
-  <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()">Tüm Renkler</li>
-  <li (click)="setCurrentColor(color)" routerLink = "/cars/color/{{ color.id }}"
-    *ngFor="let color of colors;"
-    [class]="getCurrentColorClass(color)">
-    {{ color.colorName }}
-  </li>
-
-</ul>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Renkler
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <ul *ngIf="dataLoaded==true" class="list-group">
+        <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()">Tüm Renkler</li>
+        <li (click)="setCurrentColor(color)" routerLink = "/cars/color/{{ color.id }}"
+        *ngFor="let color of colors;"
+        [class]="getCurrentColorClass(color)">
+        {{ color.colorName }}
+        </li>
+      </ul> 
+    </div> 
+  </div>
+</div>
