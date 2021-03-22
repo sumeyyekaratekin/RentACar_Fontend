@@ -2,14 +2,14 @@ export interface Rental{
     id:number;
     carId:number;
     customerId:number;
-    rentDate:string;
-    returnDate:string;
+    rentDate:Date;
+    returnDate?:Date;
 }
 
 export interface RentalDetail{
     id:number;
-    rentDate:string;
-    returnDate:string;
+    rentDate:Date;
+    returnDate?:Date;
     companyName:string;
     firstName:string;
     lastName:string;
@@ -17,6 +17,7 @@ export interface RentalDetail{
     brandName:string;
     colorName:string;
     description:string;
-    modelYear:string;
-    dailyPrice:string;
+    modelYear:number;
+    dailyPrice:number;
+    totalPrice:number;
 }

@@ -11,6 +11,7 @@
           <th scope="col">Model</th>
           <th scope="col">Renk</th>
           <th scope="col">Günlük Fiyat </th>
+          <th scope="col">Kontrat Tutarı</th>
           <th scope="col">Kiralama Tarihi</th>
           <th scope="col">Teslim Tarihi</th>
         </tr>
@@ -23,6 +24,7 @@
           <td>{{ rental.modelYear }}</td>
           <td>{{ rental.colorName }}</td>
           <td>{{ rental.dailyPrice }} ₺ </td>
+          <td>{{ rental.totalPrice }} ₺ </td>
           <td>{{ rental.rentDate  | date : 'dd-MM-YYYY HH:mm' }}</td>  
           <td>{{(rental.returnDate == null) ? "Araç Kirada": rental.returnDate | date:'dd-MM-YYYY HH:mm'}}</td>
         </tr>
