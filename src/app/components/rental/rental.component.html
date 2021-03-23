@@ -23,7 +23,7 @@
           <td>{{ rental.brandName }}</td>
           <td>{{ rental.modelYear }}</td>
           <td>{{ rental.colorName }}</td>
-          <td>{{ rental.dailyPrice }}</td>
+          <td>{{ rental.dailyPrice }} ₺ </td>
           <td>{{ rental.totalPrice }} ₺ </td>
           <td>{{ rental.rentDate  | date : 'dd-MM-YYYY HH:mm' }}</td>  
           <td>{{(rental.returnDate == null) ? "Araç Kirada": rental.returnDate | date:'dd-MM-YYYY HH:mm'}}</td>
