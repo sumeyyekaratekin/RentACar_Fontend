@@ -42,12 +42,12 @@
       <th scope="col">Renk</th>
       <th scope="col">Model</th>
       <th scope="col">Fiyat</th>
-      <th scope="col">Tanımlama</th>
+      <th scope="col">Açıklama</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let car of cardetails | carFilter: { brandId: brandFilterText, colorId:colorFilterText,  name: carFilterText} " routerLink="/cardetail/{{ car.id }}">
+    <tr *ngFor="let car of cardetails | carFilter: { brandId: brandFilterText, colorId:colorFilterText,  carName: carFilterText} " routerLink="/cardetail/{{ car.id }}">
       <td>{{ car.carName }}</td>
       <td>{{ car.brandName }}</td>
       <td>{{ car.colorName }}</td>
