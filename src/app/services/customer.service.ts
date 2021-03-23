@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CustomerDetail } from '../models/customer';
+import { Customer, CustomerDetail } from '../models/customer';
 import { ListResponseModel } from '../models/ListResponseModel';
 
 @Injectable({
@@ -15,14 +15,14 @@ export class CustomerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCustomers():Observable<ListResponseModel<CustomerDetail>> {
+  getCustomers():Observable<ListResponseModel<Customer>> {
     let newPath = this.url + "getall";
-    return this.httpClient.get<ListResponseModel<CustomerDetail>>(newPath);
+    return this.httpClient.get<ListResponseModel<Customer>>(newPath);
   }
 
-  getById(id:number):Observable<ListResponseModel<CustomerDetail>> {
+  getById(id:number):Observable<ListResponseModel<Customer>> {
     let newPath = this.url + "getbyid?id=" + id;
-    return this.httpClient.get<ListResponseModel<CustomerDetail>>(newPath);
+    return this.httpClient.get<ListResponseModel<Customer>>(newPath);
   }
   
   getCustomerDetails():Observable<ListResponseModel<CustomerDetail>> {

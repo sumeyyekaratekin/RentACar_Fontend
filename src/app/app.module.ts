@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { CardetailComponent } from './components/cardetail/cardetail.component';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
+import { FormsModule } from '@angular/forms';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterPipe } from './pipes/car-filter.pipe';
 
@@ -34,7 +35,8 @@ import { CarFilterPipe } from './pipes/car-filter.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

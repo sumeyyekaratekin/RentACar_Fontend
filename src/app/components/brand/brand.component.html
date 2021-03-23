@@ -2,24 +2,18 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   
+  <ul *ngIf="dataLoaded==true" class="list-group">
 
-
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Markalar
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <ul *ngIf="dataLoaded==true" class="list-group">
-        <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllBrandClass()">Tüm Markalar</li>    
-        <li (click)="setCurrentBrand(brand)" 
-            routerLink = "/cars/brand/{{ brand.id }}"
-            *ngFor="let brand of brands;" 
-            [class]="getCurrentBrandClass(brand)">{{brand.brandName}}
-        </li>  
-      </ul>
-    </div>
-  </div>
+    <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllBrandClass()">Tüm Markalar</li>
+    <li class="list-group-item">  
+      <input type="text" class="form-control" id="markaarama" [(ngModel)]="brandFilterText" placeholder="Marka ara">
+    </li>
+    <li (click)="setCurrentBrand(brand)" 
+      routerLink = "/cars/brand/{{ brand.id }}"
+      *ngFor="let brand of brands | brandFilter : brandFilterText" 
+      [class]="getCurrentBrandClass(brand)">{{ brand.brandName }}
+    </li>  
+  
+  </ul>
 
 
