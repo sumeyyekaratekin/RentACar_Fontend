@@ -6,20 +6,6 @@ import { CarDetail } from '../models/car';
 })
 export class CarFilterPipe implements PipeTransform {
   
-  /*
-  transform(items: any[], filter: string): any {
-    if(!items || !filter) {
-      return items;
-    }
-    // To search values only of "name" variable of your object(item)
-    //return items.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
-
-    // To search in values of every variable of your object(item)
-    return items.filter(item => JSON.stringify(item).toString().indexOf(filter.toString()) !== -1);
-  }
-*/
-
-  
   transform(items: any, filter: any): any {
 
     console.log(items);

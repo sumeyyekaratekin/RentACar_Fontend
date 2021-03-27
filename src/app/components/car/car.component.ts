@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
-import { Car, CarDetail } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/car';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -15,17 +15,15 @@ import { ColorService } from 'src/app/services/color.service';
 
 export class CarComponent implements OnInit {
 
-  cars: Car[] = [];
   cardetails: CarDetail[] = [];  
   
   brands: Brand[] = [];
   colors: Color[] = [];
   
   carFilterText = "";
+  currentBrand:number;
+  currentColor:number;
 
-  colorFilterText = "0";
-  brandFilterText = "0";
-  
   dataLoaded = false;
 
   constructor(private carService: CarService, 
@@ -35,21 +33,20 @@ export class CarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getBrands(); 
+    this.getColors(); 
+
     this.activatedRoute.params.subscribe(params=>{
       if(params["brandId"] && params["colorId"]){
-
-      } else if(params["brandId"]){
-        this.getCarDetailsByBrand(params["brandId"]);
-      } else if (params["colorId"]) {
+        this.getCarDetailsByBrandAndColor(params["brandId"], params["colorId"]);
+      } else if(params["colorId"]){
         this.getCarDetailsByColor(params["colorId"]);
+      } else if (params["brandId"]){
+        this.getCarDetailsByBrand(params["brandId"]);
       } else {
         this.getCarDetails();
       }
-
     });
-
-    this.getBrands();
-    this.getColors();
 
   }
 
@@ -63,13 +60,6 @@ export class CarComponent implements OnInit {
   getColors() {
     this.colorService.getColors().subscribe((response) => {
       this.colors = response.data;
-      this.dataLoaded = true;
-    });
-  }
-
-  getCars() {
-    this.carService.getCars().subscribe((response) => {
-      this.cars = response.data;
       this.dataLoaded = true;
     });
   }
@@ -88,6 +78,12 @@ export class CarComponent implements OnInit {
     });
   }
 
+    getCarDetailsByBrandAndColor(brandId:number, colorId:number) {
+    this.carService.getCarDetailsByBrandAndColor(brandId, colorId).subscribe((response) => {
+      this.cardetails = response.data;
+      this.dataLoaded = true;
+    });
+  }
   getCarDetails() {
     this.carService.getCarDetails().subscribe((response) => {
       this.cardetails = response.data;

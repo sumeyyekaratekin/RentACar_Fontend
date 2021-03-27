@@ -47,7 +47,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let car of cardetails | carFilter: { brandId: brandFilterText, colorId:colorFilterText,  carName: carFilterText} " routerLink="/cardetail/{{ car.id }}">
+    <tr *ngFor="let car of carDetails | carFilter : carFilter" [routerLink]="['/cardetail']" [queryParams]="{carId: car.id}" >
       <td>{{ car.carName }}</td>
       <td>{{ car.brandName }}</td>
       <td>{{ car.colorName }}</td>

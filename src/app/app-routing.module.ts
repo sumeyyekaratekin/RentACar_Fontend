@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BrandAddComponent } from './components/brand-add/brand-add/brand-add.component';
+
 import { CarComponent } from './components/car/car.component';
 import { CardetailComponent } from './components/cardetail/cardetail.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { HomeComponent } from './components/home/home.component';
 import { RentalComponent } from './components/rental/rental.component';
+
+
 
 const routes: Routes = [
   {path:"", pathMatch:"full",  component:HomeComponent},
@@ -16,6 +20,8 @@ const routes: Routes = [
 
   {path:"customer", component: CustomerComponent },
   {path:"rental", component: RentalComponent },
+
+  {path:"brand/add",component:BrandAddComponent},
 
 ];
 

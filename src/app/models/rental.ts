@@ -6,10 +6,7 @@ export interface Rental{
     returnDate:string;
 }
 
-export interface RentalDetail{
-    id:number;
-    rentDate:string;
-    returnDate:string;
+export interface RentalDetail extends Rental{
     companyName:string;
     firstName:string;
     lastName:string;
@@ -18,5 +15,4 @@ export interface RentalDetail{
     description:string;
     modelYear:string;
     dailyPrice:string;
-    totalPrice:number;
 }

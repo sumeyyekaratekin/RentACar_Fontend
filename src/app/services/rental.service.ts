@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ListResponseModel } from '../models/ListResponseModel';
+import { CarDetail } from '../models/car';
 import { Rental, RentalDetail } from '../models/rental';
+import { ListResponseModel, ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,10 @@ export class RentalService {
     let newPath = this.url + "getrentaldetails";
     return this.httpClient.get<ListResponseModel<RentalDetail>>(newPath);
   }  
+  add(rental:Rental):Observable<ListResponseModel<CarDetail>> {
+    let newPath = this.url + "add";
+    return this.httpClient.post<ListResponseModel<CarDetail>>(newPath, rental);
+  }
+
 
 }
