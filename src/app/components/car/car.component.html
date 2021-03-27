@@ -10,14 +10,14 @@
 
   <div class="col-sm-3">
     <select class="form-select" id="markasec" [(ngModel)]="currentBrand">
-      <option [ngValue]="undefined" selected>Bütün Markalar</option>
+      <option [ngValue]="undefined" selected>Tüm Markalar</option>
       <option *ngFor="let brand of brands" value="{{ brand.id }}">{{ brand.name }}</option>     
     </select>
   </div>
 
   <div class="col-sm-3">
     <select class="form-select" id="renksec" [(ngModel)]="currentColor">
-      <option [ngValue]="undefined" selected>Bütün Renkler</option>
+      <option [ngValue]="undefined" selected>Tüm Renkler</option>
       <option *ngFor="let color of colors" value="{{ color.id }}">{{ color.name }}</option> 
     </select>    
   </div>

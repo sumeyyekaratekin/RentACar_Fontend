@@ -16,7 +16,7 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) { }
 
   getCustomers():Observable<ListResponseModel<Customer>> {
-    let newPath = this.url + "getlist";
+    let newPath = this.url + "getall";
     return this.httpClient.get<ListResponseModel<Customer>>(newPath);
   }
 
