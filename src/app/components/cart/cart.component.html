@@ -1,0 +1,28 @@
+<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-danger d-flex mx-auto" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <h5>Sepet</h5>
+  <table *ngIf="dataLoaded==true" class="table table-bordered table-condensed table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Müşteri</th>
+          <th scope="col">Marka</th>
+          <th scope="col">Model</th>
+          <th scope="col">Renk</th>
+          <th scope="col">Günlük Fiyat</th>
+          <th scope="col">Kira Tarihi</th>
+          <th scope="col">Teslim Tarihi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cart of cartItems">
+          <td>{{ cart.firstName +" "+ cart.lastName }}</td>
+          <td>{{ cart.brandName }}</td>
+          <td>{{ cart.modelYear }}</td>
+          <td>{{ cart.colorName }}</td>
+          <td>{{ cart.dailyPrice }} TL</td>
+          <td>{{ cart.rentDate  | date : 'dd-MM-YYYY' }}</td>  
+          <td>{{(cart.returnDate == null) ? "Araç Kirada": cart.returnDate | date:'dd-MM-YYYY'}}</td>
+        </tr>
+      </tbody>
+    </table> -->

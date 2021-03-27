@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Customer, CustomerDetail } from '../models/customer';
-import { ListResponseModel } from '../models/ListResponseModel';
+import { ListResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) { }
 
   getCustomers():Observable<ListResponseModel<Customer>> {
-    let newPath = this.url + "getall";
+    let newPath = this.url + "getlist";
     return this.httpClient.get<ListResponseModel<Customer>>(newPath);
   }
 

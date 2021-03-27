@@ -2,25 +2,16 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<li class="list-group-item">  
-  <input type="text" class="form-control" id="renkarama" [(ngModel)]="filterText" placeholder="Renk ara">
-</li>
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Renkler
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <ul *ngIf="dataLoaded==true" class="list-group">
-        <!-- <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()"></li> -->
-        <li (click)="setCurrentColor(color)" routerLink = "/cars/color/{{ color.id }}"
-        *ngFor="let color of colors  | colorFilter:filterText"
-        [class]="getCurrentColorClass(color)">
-        {{ color.colorName }}
-        </li>
-      </ul> 
-    </div> 
-  </div>
-</div>
+<ul *ngIf="dataLoaded==true" class="list-group">
+
+  <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()">Tüm Renkler</li>
+  <li class="list-group-item">  
+    <input type="text" class="form-control" id="renkarama" [(ngModel)]="colorFilterText" placeholder="Renk ara">
+  </li>
+  <li 
+    *ngFor="let color of colors | colorFilter : colorFilterText"
+    (click)="setCurrentColor(color)" routerLink="cars" [queryParams]="{colorId: color.id}" queryParamsHandling="merge"
+    [class]="getCurrentColorClass(color)"> {{ color.name }}
+  </li>
+
+</ul>

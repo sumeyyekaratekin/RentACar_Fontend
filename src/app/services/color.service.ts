@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Color } from '../models/color';
-import { ListResponseModel } from '../models/ListResponseModel';
+import { ListResponseModel } from '../models/responseModel';
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ColorService {
   constructor(private httpClient: HttpClient) { }
 
   getColors():Observable<ListResponseModel<Color>> {
-    let newPath = this.url + "getall";
+    let newPath = this.url + "getlist";
     return this.httpClient.get<ListResponseModel<Color>>(newPath);
   }
 

@@ -8,40 +8,43 @@ import { CarDetailService } from 'src/app/services/cardetail.service';
 @Component({
   selector: 'app-cardetail',
   templateUrl: './cardetail.component.html',
-  styleUrls: ['./cardetail.component.css']
+  styleUrls: ['./cardetail.component.css'],
 })
 
 export class CardetailComponent implements OnInit {
 
-  cardetails : CarDetail[] = [];
-  carimages: CarImage[] = [];
+  cardetail : CarDetail;
+  carimages : CarImage[] = [];
 
-  constructor( private carService: CarService, private carDetailService: CarDetailService,  private activatedRoute:ActivatedRoute) {}
+  constructor( 
+    private carService: CarService, 
+    private carDetailService: CarDetailService,  
+    private activatedRoute:ActivatedRoute) {}
 
-  ngOnInit(): void {
-    
-    this.activatedRoute.params.subscribe(params=>{
+  ngOnInit(): void {    
+    this.activatedRoute.queryParams.subscribe(params=>{
       if(params["carId"]){
-        this.getCarDetailsById(params["carId"]);
-        this.getImagesByCarId(params["carId"]);
-      } else {
-        this.getImagesByCarId(params["carId"]);
+        this.getCarDetailsById(params["carId"]); // araç detaylarını getir
+        this.getImagesByCarId(params["carId"]);  // araç resimlerini getir
       }
-    })    
-  }
-
-  getCarDetailsById(carId:number){
-    this.carService.getCarDetailsById(carId).subscribe(response=>{
-      this.cardetails = response.data;
     })
   }
 
+  // seçili araç detaylarını getir
+  getCarDetailsById(carId:number){
+    this.carService.getCarDetailsById(carId).subscribe(response=>{
+      this.cardetail = response.data;
+    })
+  }
+
+  // seçili araç resimlerini getir
   getImagesByCarId(carId:number){
     this.carDetailService.getImagesByCarId(carId).subscribe(response=>{
       this.carimages = response.data;
     })
   }
 
+  // resimleri görüntüleyen carousel de aktif araç css'ini değiştir
   getCurrentImageClass(image:CarImage){
     if(image == this.carimages[0]){
       return "carousel-item active"
@@ -49,7 +52,5 @@ export class CardetailComponent implements OnInit {
       return "carousel-item"
     }
   }
-
-  
 
 }

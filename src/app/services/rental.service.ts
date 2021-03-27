@@ -15,8 +15,13 @@ export class RentalService {
 
   constructor(private httpClient: HttpClient) { }
 
+  add(rental:Rental):Observable<ListResponseModel<CarDetail>> {
+    let newPath = this.url + "add";
+    return this.httpClient.post<ListResponseModel<CarDetail>>(newPath, rental);
+  }
+
   getRentals():Observable<ListResponseModel<Rental>> {
-    let newPath = this.url + "getall";
+    let newPath = this.url + "getlist";
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
@@ -29,10 +34,5 @@ export class RentalService {
     let newPath = this.url + "getrentaldetails";
     return this.httpClient.get<ListResponseModel<RentalDetail>>(newPath);
   }  
-  add(rental:Rental):Observable<ListResponseModel<CarDetail>> {
-    let newPath = this.url + "add";
-    return this.httpClient.post<ListResponseModel<CarDetail>>(newPath, rental);
-  }
-
 
 }

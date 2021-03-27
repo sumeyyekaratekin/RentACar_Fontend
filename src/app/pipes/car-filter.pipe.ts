@@ -2,35 +2,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CarDetail } from '../models/car';
 
 @Pipe({
-  name: 'carFilter',
+  name: 'carFilter'
 })
 export class CarFilterPipe implements PipeTransform {
-  
-  transform(items: any, filter: any): any {
 
-    console.log(items);
-    console.log(filter);
-    let filterx=JSON.parse(JSON.stringify(filter));
-    console.log(filterx);
-
-    for (var prop in filterx) {
-      if (Object.prototype.hasOwnProperty.call(filterx, prop)) {
-         if(filterx[prop]=='' || filterx[prop]=='0') { delete filterx[prop]; }
-      }
-    }
-
-    if (!items || !filterx) {
-      return items;
-    }
-  
-    return items.filter(function(obj:any) {
-      return Object.keys(filterx).every(function(c) {
-        console.log(obj[c] +" > "+ filterx[c]);
-        return obj[c].toString().indexOf(filterx[c].toString()) != -1
-      });
-    });
-
+  transform(value: CarDetail[], filterText: string): CarDetail[] {
+    return filterText?value
+    .filter((c:any) => this.matchValue(c,filterText))
+    :value;
   }
-  
-  
+  matchValue(c:any, filterText:string) {
+    return Object.keys(c).map((key) => {
+       return new RegExp(filterText, 'gi').test(c[key]);
+    }).some(result => result);
+  }
+
 }
