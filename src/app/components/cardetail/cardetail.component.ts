@@ -24,8 +24,8 @@ export class CardetailComponent implements OnInit {
   ngOnInit(): void {    
     this.activatedRoute.queryParams.subscribe(params=>{
       if(params["carId"]){
-        this.getCarDetailsById(params["carId"]); 
-        this.getImagesByCarId(params["carId"]); 
+        this.getCarDetailsById(params["carId"]);
+        this.getImagesByCarId(params["carId"]);
       }
     })
   }
@@ -35,7 +35,6 @@ export class CardetailComponent implements OnInit {
       this.cardetail = response.data;
     })
   }
-
 
   getImagesByCarId(carId:number){
     this.carDetailService.getImagesByCarId(carId).subscribe(response=>{
