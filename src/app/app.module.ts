@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarComponent } from './components/car/car.component';
@@ -14,16 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { CardetailComponent } from './components/cardetail/cardetail.component';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+​import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterPipe } from './pipes/car-filter.pipe';
-import { CarAddComponent } from './components/car-add/car-add/car-add.component';
-import { BrandAddComponent } from './components/brand-add/brand-add/brand-add.component';
-import { ToastrModule } from 'ngx-toastr';
-import { PaymentComponent } from './payment/payment/payment.component';
-
+import { RentalAddComponent } from './components/rental-add/rental-add.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { CartComponent } from './components/cart/cart.component';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +36,7 @@ import { CartComponent } from './components/cart/cart.component';
     BrandFilterPipe,
     ColorFilterPipe,
     CarFilterPipe,
+    RentalAddComponent,
     PaymentComponent,
     CartComponent
   ],
@@ -47,12 +45,11 @@ import { CartComponent } from './components/cart/cart.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass : "toast-bottom-right"
-    }),
-
+      positionClass:"toast-bottom-right"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
