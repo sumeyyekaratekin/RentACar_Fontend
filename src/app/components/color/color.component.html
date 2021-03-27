@@ -11,7 +11,7 @@
   <li 
     *ngFor="let color of colors | colorFilter : colorFilterText"
     (click)="setCurrentColor(color)" routerLink="cars" [queryParams]="{colorId: color.id}" queryParamsHandling="merge"
-    [class]="getCurrentColorClass(color)"> {{ color.name }}
+    [class]="getCurrentColorClass(color)"> {{ color.colorName }}
   </li>
 
 </ul>

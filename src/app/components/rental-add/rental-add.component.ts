@@ -65,7 +65,7 @@ export class RentalAddComponent implements OnInit {
       let rentalModel = Object.assign({}, this.rentalAddForm.value);
       rentalModel.carId = this.currentCar.id;
       this.cartService.addToCart(rentalModel);
-      this.toastrService.success("Sepete Eklendi", this.currentCar.name);
+      this.toastrService.success("Sepete Eklendi", this.currentCar.carName);
     } else {
       this.toastrService.error('Formunuz eksik', 'Hata');
     }

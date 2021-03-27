@@ -20,7 +20,7 @@
           <td>{{ cart.brandName }}</td>
           <td>{{ cart.modelYear }}</td>
           <td>{{ cart.colorName }}</td>
-          <td>{{ cart.dailyPrice }} TL</td>
+          <td>{{ cart.dailyPrice }} ₺ </td>
           <td>{{ cart.rentDate  | date : 'dd-MM-YYYY' }}</td>  
           <td>{{(cart.returnDate == null) ? "Araç Kirada": cart.returnDate | date:'dd-MM-YYYY'}}</td>
         </tr>

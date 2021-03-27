@@ -1,5 +1,7 @@
 <div class="card">
-  <div class="card-header"><h5 class="title">Araç kirala </h5></div>
+  <div class="card-header">
+    <h5 class="title">Araç kirala </h5>
+  </div>
 
   <div class="card-body">
 
@@ -9,18 +11,19 @@
         <label for="productName">Müşteri </label>
         <div class="form-group">
 
-          <select id="customerId" class="form-select"  formControlName="customerId">
-            <option [ngValue]="customer.id" *ngFor="let customer of customers">{{ customer.firstName }} {{ customer.lastName }}</option>
+          <select id="customerId" class="form-select" formControlName="customerId">
+            <option [ngValue]="customer.id" *ngFor="let customer of customers">{{ customer.firstName }} {{
+              customer.lastName }}</option>
           </select>
 
         </div>
       </div>
- 
+
       <div class="mb-3">
         <label for="productName">Kiralama tarihi</label>
         <div class="form-group">
-          <input type="date" id="rentDate" class="form-control" (change)="calcTotalPrice()"
-          formControlName="rentDate"  min="{{ rentDate | date:'yyyy-MM-dd' }}"  value="{{ rentDate | date:'yyyy-MM-dd' }}"/>
+          <input type="date" id="rentDate" class="form-control" (change)="calcTotalPrice()" formControlName="rentDate"
+            min="{{ rentDate | date:'yyyy-MM-dd' }}" value="{{ rentDate | date:'yyyy-MM-dd' }}" />
         </div>
       </div>
 
@@ -28,21 +31,22 @@
         <label for="productName">Teslim tarihi</label>
         <div class="form-group">
           <input type="date" id="returnDate" class="form-control" (change)="calcTotalPrice()"
-          formControlName="returnDate" min="{{ returnDate | date:'yyyy-MM-dd' }}"  value="{{ returnDate | date:'yyyy-MM-dd' }}">
+            formControlName="returnDate" min="{{ returnDate | date:'yyyy-MM-dd' }}"
+            value="{{ returnDate | date:'yyyy-MM-dd' }}">
         </div>
       </div>
 
       <div class="mb-3">
         <label for="productName">Toplam ücret</label>
-        <div class="form-group"> <h4> {{ totalPrice }} TL </h4> </div>
-      </div> 
-
+        <div class="form-group">
+          <h4> {{ totalPrice }} ₺ </h4>
+        </div>
+      </div>
     </form>
-
   </div>
 
   <div class="card-footer">
-    <button class="btn btn-fill btn-primary" (click)="addToCart()" >Sepete Ekle</button>
+    <button class="btn btn-fill btn-primary" (click)="addToCart()">Sepete Ekle</button>
   </div>
 
 </div>

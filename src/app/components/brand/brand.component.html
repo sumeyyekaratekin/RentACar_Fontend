@@ -11,7 +11,7 @@
     <li  
       *ngFor="let brand of brands | brandFilter : brandFilterText" 
       (click)="setCurrentBrand(brand)" routerLink="cars" [queryParams]="{brandId: brand.id}" queryParamsHandling="merge"
-      [class]="getCurrentBrandClass(brand)"> {{ brand.name }}
+      [class]="getCurrentBrandClass(brand)"> {{ brand.brandName }}
     </li>
 
   </ul>

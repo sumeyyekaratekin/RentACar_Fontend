@@ -11,14 +11,14 @@
   <div class="col-sm-3">
     <select class="form-select" id="markasec" [(ngModel)]="currentBrand">
       <option [ngValue]="undefined" selected>Tüm Markalar</option>
-      <option *ngFor="let brand of brands" value="{{ brand.id }}">{{ brand.name }}</option>     
+      <option *ngFor="let brand of brands" value="{{ brand.id }}">{{ brand.brandName }}</option>     
     </select>
   </div>
 
   <div class="col-sm-3">
     <select class="form-select" id="renksec" [(ngModel)]="currentColor">
       <option [ngValue]="undefined" selected>Tüm Renkler</option>
-      <option *ngFor="let color of colors" value="{{ color.id }}">{{ color.name }}</option> 
+      <option *ngFor="let color of colors" value="{{ color.id }}">{{ color.colorName }}</option> 
     </select>    
   </div>
 
@@ -39,6 +39,7 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">İsim</th>
+      <th scope="col">Marka</th>
       <th scope="col">Renk</th>
       <th scope="col">Model</th>
       <th scope="col">Fiyat</th>
@@ -48,15 +49,16 @@
 
   <tbody>
     <tr *ngFor="let car of carDetails | carFilter : carFilter" [routerLink]="['/cardetail']" [queryParams]="{carId: car.id}" >
-      <td>{{ car.name }}</td>
+      <td>{{ car.carName }}</td>
+      <td>{{ car.brandName }}</td>
       <td>{{ car.colorName }}</td>
       <td>{{ car.modelYear }}</td>
-      <td>{{ car.dailyPrice }} TL</td>
+      <td>{{ car.dailyPrice }} ₺ </td>
       <td>{{ car.description }}</td>
     </tr>
 
     <tr *ngIf="carDetails.length == 0">
-      <td colspan="5">KAYITLI ARAÇ YOK</td>
+      <td colspan="5">Araç Bulunamadı...</td>
     </tr>    
   </tbody>
 
