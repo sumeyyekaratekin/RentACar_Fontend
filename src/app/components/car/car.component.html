@@ -11,21 +11,22 @@
   <div class="col-sm-3">
     <select class="form-select" id="markasec" [(ngModel)]="currentBrand">
       <option [ngValue]="undefined" selected>Tüm Markalar</option>
-      <option *ngFor="let brand of brands" value="{{ brand.id }}">{{ brand.brandName }}</option>     
+      <option *ngFor="let brand of brands" value="{{ brand.id }}">{{ brand.brandName }}</option>
     </select>
   </div>
 
   <div class="col-sm-3">
     <select class="form-select" id="renksec" [(ngModel)]="currentColor">
       <option [ngValue]="undefined" selected>Tüm Renkler</option>
-      <option *ngFor="let color of colors" value="{{ color.id }}">{{ color.colorName }}</option> 
-    </select>    
+      <option *ngFor="let color of colors" value="{{ color.id }}">{{ color.colorName }}</option>
+    </select>
   </div>
 
   <div class="col-sm-3">
-    <a type="button" [routerLink]="['/cars']" [queryParams]="{brandId: currentBrand, colorId: currentColor}" class="btn btn-primary">Filtrele</a>
-  </div>  
-  
+    <a type="button" [routerLink]="['/cars']" [queryParams]="{brandId: currentBrand, colorId: currentColor}"
+      class="btn btn-primary">Filtrele</a>
+  </div>
+
   <div class="col-sm-3">
     <input type="text" class="form-control" id="aracarama" [(ngModel)]="carFilter" placeholder="Araç ara">
   </div>
@@ -35,7 +36,7 @@
 <br />
 
 <table *ngIf="dataLoaded == true" class="table table-bordered table-condensed table-hover">
-  
+
   <thead class="thead-dark">
     <tr>
       <th scope="col">İsim</th>
@@ -48,7 +49,8 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let car of carDetails | carFilter : carFilter" [routerLink]="['/cardetail']" [queryParams]="{carId: car.id}" >
+    <tr *ngFor="let car of carDetails | carFilter : carFilter" [routerLink]="['/cardetail']"
+      [queryParams]="{carId: car.id}">
       <td>{{ car.carName }}</td>
       <td>{{ car.brandName }}</td>
       <td>{{ car.colorName }}</td>
@@ -59,7 +61,7 @@
 
     <tr *ngIf="carDetails.length == 0">
       <td colspan="5">Araç Bulunamadı...</td>
-    </tr>    
+    </tr>
   </tbody>
 
 </table>

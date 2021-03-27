@@ -20,7 +20,7 @@ export class RentalAddComponent implements OnInit {
   currentCar: CarDetail;
   rentDate: Date;
   returnDate: Date;
-  totalPrice:number = 0;
+  totalPrice:number ;
   dataLoaded = false;
 
   constructor(
@@ -78,17 +78,16 @@ export class RentalAddComponent implements OnInit {
     });
   }
   
-  calcTotalPrice() {
+    calcTotalPrice() {
     let startDate = new Date(this.rentalAddForm.value.rentDate);
-    let endDate = new Date(this.rentalAddForm.value.returnDate);
-    if( isNaN(startDate.getTime()) || isNaN(endDate.getTime())   ){
-      this.totalPrice = 0;
-    } else if ( startDate > endDate ) {
-      this.totalPrice = 0;    
-    } else {
-      let dateDiff = Math.floor((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24);
-      this.totalPrice = dateDiff * this.currentCar.dailyPrice;
-    }
-  }
-
+     let endDate = new Date(this.rentalAddForm.value.returnDate);
+     if( isNaN(startDate.getTime()) || isNaN(endDate.getTime())   ){
+       this.totalPrice = 0;
+     } else if ( startDate > endDate ) {
+       this.totalPrice = 0;    
+     } else {
+       let dateDiff = Math.floor((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24);
+       this.totalPrice = dateDiff * this.currentCar.dailyPrice;
+     }
+   }
 }
