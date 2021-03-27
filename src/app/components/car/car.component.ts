@@ -15,7 +15,7 @@ import { ColorService } from 'src/app/services/color.service';
 
 export class CarComponent implements OnInit {
 
-  carDetails: CarDetail[] = []; // araç listesi
+  carDetails: CarDetail[] = [];
 
   brands: Brand[] = [];
   colors: Color[] = [];
@@ -32,8 +32,8 @@ export class CarComponent implements OnInit {
     private activatedRoute:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.getBrands(); // açılır kutu için markaları getir
-    this.getColors(); // açılır kutu için renkleeri getir
+    this.getBrands();
+    this.getColors();
 
     this.activatedRoute.queryParams.subscribe(params => {
       if(params["brandId"] && params["colorId"]){
@@ -48,7 +48,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  // markaları getir
   getBrands() { 
     this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
@@ -56,7 +55,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  //renkleri getir
   getColors() {
     this.colorService.getColors().subscribe((response) => {
       this.colors = response.data;
@@ -64,7 +62,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  // markaya göre araç bilgilerini getir
   getCarDetailsByBrand(brandId:number) {
     this.carService.getCarDetailsByBrand(brandId).subscribe((response) => {
       this.carDetails = response.data;
@@ -72,7 +69,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  // renge göre araç bilgilerini getir
   getCarDetailsByColor(colorId:number) {
     this.carService.getCarDetailsByColor(colorId).subscribe((response) => {
       this.carDetails = response.data;
@@ -80,7 +76,6 @@ export class CarComponent implements OnInit {
     });
   }
   
-  // marka ve renge göre araç bilgilerini getir
   getCarDetailsByBrandAndColor(brandId:number, colorId:number) {
     this.carService.getCarDetailsByBrandAndColor(brandId, colorId).subscribe((response) => {
       this.carDetails = response.data;
@@ -88,7 +83,6 @@ export class CarComponent implements OnInit {
     });
   }
 
-  // araç detaylarını getir
   getCarDetails() {
     this.carService.getCarDetails().subscribe((response) => {
       this.carDetails = response.data;

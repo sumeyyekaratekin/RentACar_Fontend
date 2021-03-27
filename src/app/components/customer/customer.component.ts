@@ -9,7 +9,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: CustomerDetail[] = []; // CustomerDetailDto listesi
+  customers: CustomerDetail[] = [];
 
   dataLoaded = false;
   constructor(private customerService: CustomerService) { }
@@ -18,16 +18,6 @@ export class CustomerComponent implements OnInit {
     this.getCustomerDetails();
   }
 
-  /* şimdilik kalsın refactor edilecek
-  getCustomers() {
-    this.customerService.getCustomers().subscribe((response) => {
-      this.customers = response.data;
-      this.dataLoaded = true;
-    });
-  }
-  */
-
-  // müşterileri getir
   getCustomerDetails() {
     this.customerService.getCustomerDetails().subscribe((response) => {
       this.customers = response.data;

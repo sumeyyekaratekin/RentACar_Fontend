@@ -16,7 +16,7 @@ import { CartService } from 'src/app/services/cart.service';
 
 export class RentalAddComponent implements OnInit {
   rentalAddForm: FormGroup;
-  customers: CustomerDetail[] = []; // CustomerDetailDto listesi
+  customers: CustomerDetail[] = [];
   currentCar: CarDetail;
   rentDate: Date;
   returnDate: Date;
@@ -46,14 +46,12 @@ export class RentalAddComponent implements OnInit {
     });
   }
 
-  // seçili araç detaylarını getir
   getCarDetailsById(carId: number) {
     this.carService.getCarDetailsById(carId).subscribe((response) => {
       this.currentCar = response.data;
     });
   }
 
-  // form - alan eşleştirme yap
   createRentalAddForm() {
     this.rentalAddForm = this.formBuilder.group({
       customerId: ['', Validators.required],
@@ -62,8 +60,6 @@ export class RentalAddComponent implements OnInit {
       returnDate: [''],
     });
   }
-
-  // kirala
   addToCart() {
     if (this.rentalAddForm.valid) {
       let rentalModel = Object.assign({}, this.rentalAddForm.value);
@@ -75,7 +71,6 @@ export class RentalAddComponent implements OnInit {
     }
   }
 
-  // müşterileri getir
   getCustomerDetails() {
     this.customerService.getCustomerDetails().subscribe((response) => {
       this.customers = response.data;

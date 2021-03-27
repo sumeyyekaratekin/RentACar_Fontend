@@ -9,18 +9,16 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit {
 
-  colors: Color[] = [];  // renk listesi
-  currentColor: Color;   // seçili renk
-  colorFilterText = "";  // aramak için yazılan renk
-  dataLoaded = false;    // veri yüklenme durumu
-
+  colors: Color[] = [];  
+  currentColor: Color; 
+  colorFilterText = "";
+  dataLoaded = false; 
   constructor(private colorService: ColorService) { }
 
   ngOnInit(): void {
-    this.getColors(); // bileşen ilk oluşturulduğunda renkleri getir
+    this.getColors();
   }
 
-  // renkleri getir
   getColors() {
     this.colorService.getColors().subscribe((response) => {
       this.colors = response.data;
@@ -28,12 +26,9 @@ export class ColorComponent implements OnInit {
     });
   }
 
-  // seçili renge göre filtrelemek için rengi set ediyoruz
   setCurrentColor(color:Color){
     this.currentColor = color;
   }
-
-  // seçili renge göre listedeki elemanın css'ini aktif ediyoruz
   getCurrentColorClass(color:Color){
     if(color==this.currentColor){
       return "list-group-item active";
@@ -42,12 +37,10 @@ export class ColorComponent implements OnInit {
     }
   }  
 
-  //tüm renkleri getirmesi için seçili rengi temizliyoruz
   clearCurrentBrand(){
     this.currentColor = null;
   }
 
-  // tüm renkler seçili ise tüm renkler butonunun css'ini aktif ediyoruz
   getAllColorClass(){
     if(!this.currentColor){
       return "list-group-item active";

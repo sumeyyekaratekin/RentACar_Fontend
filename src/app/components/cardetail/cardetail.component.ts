@@ -24,27 +24,25 @@ export class CardetailComponent implements OnInit {
   ngOnInit(): void {    
     this.activatedRoute.queryParams.subscribe(params=>{
       if(params["carId"]){
-        this.getCarDetailsById(params["carId"]); // araç detaylarını getir
-        this.getImagesByCarId(params["carId"]);  // araç resimlerini getir
+        this.getCarDetailsById(params["carId"]); 
+        this.getImagesByCarId(params["carId"]); 
       }
     })
   }
 
-  // seçili araç detaylarını getir
   getCarDetailsById(carId:number){
     this.carService.getCarDetailsById(carId).subscribe(response=>{
       this.cardetail = response.data;
     })
   }
 
-  // seçili araç resimlerini getir
+
   getImagesByCarId(carId:number){
     this.carDetailService.getImagesByCarId(carId).subscribe(response=>{
       this.carimages = response.data;
     })
   }
 
-  // resimleri görüntüleyen carousel de aktif araç css'ini değiştir
   getCurrentImageClass(image:CarImage){
     if(image == this.carimages[0]){
       return "carousel-item active"
