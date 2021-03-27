@@ -9,7 +9,7 @@
 
       <div class="carousel-inner">
         <div *ngFor="let car of carimages" [class]="getCurrentImageClass(car)" data-bs-interval="3000" >
-          <img src="https://localhost:44327/{{ car.imagePath }}" class="rounded mx-auto d-block w-100" alt="{{ car.imagePath }}" />
+          <img src="https://localhost:44327{{ car.imagePath }}" class="rounded mx-auto d-block w-100" alt="{{ car.imagePath }}" />
         </div>
       </div>
 
@@ -39,11 +39,11 @@
         </div>
   
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Marka : </strong>{{ cardetail.brandName }}</li>
+          <li class="list-group-item"><strong>Marka : </strong>{{ cardetail?.brandName }}</li>
           <li class="list-group-item"><strong>Model : </strong>{{ cardetail?.modelYear }}</li>
           <li class="list-group-item"><strong>Renk : </strong>{{ cardetail?.colorName }}</li>
           <li class="list-group-item">
-            <strong>Günlük Ücret : </strong>{{ cardetail.dailyPrice }} ₺
+            <strong>Günlük Ücret : </strong>{{ cardetail?.dailyPrice }} ₺
           </li>
         </ul>
   
@@ -54,6 +54,3 @@
 
 
   </div>
-
-</div>
-
