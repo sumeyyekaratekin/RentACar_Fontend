@@ -20,6 +20,8 @@ import { CarFilterPipe } from './pipes/car-filter.pipe';
 import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './components/auth-components/login/login.component';
+import { RegisterComponent } from './components/auth-components/register/register.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { CartComponent } from './components/cart/cart.component';
     CarFilterPipe,
     RentalAddComponent,
     PaymentComponent,
-    CartComponent
+    CartComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
