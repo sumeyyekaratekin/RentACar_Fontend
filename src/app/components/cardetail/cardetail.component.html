@@ -8,7 +8,7 @@
       </ol>
 
       <div class="carousel-inner">
-        <div *ngFor="let car of carimages" [class]="getCurrentImageClass(car)" data-bs-interval="3000" >
+        <div *ngFor="let car of carimages" [class]="getCurrentImageClass(car)" data-bs-interval="2000" >
           <img src="https://localhost:44327{{ car.imagePath }}" class="rounded mx-auto d-block w-100" alt="{{ car.imagePath }}" />
         </div>
       </div>
@@ -48,9 +48,12 @@
         </ul>
   
         <div class="card-body">
-          <button type="button"  [routerLink]="['/rental/add']" [queryParams]="{carId: cardetail?.id}"  class="btn btn-primary">Kirala</button>
+            <button type="button" [hidden]="!isCarAvail" [routerLink]="['/rental/add']" [queryParams]="{carId: cardetail?.id}"  class="btn btn-primary">Kirala</button>
+            <h4 *ngIf="!isCarAvail" ><p>ARAÇ MÜSAİT DEĞİL</p></h4>
         </div>
       </div>
 
-
   </div>
+
+</div>
+

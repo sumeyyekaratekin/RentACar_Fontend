@@ -10,7 +10,6 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomerComponent implements OnInit {
 
   customers: CustomerDetail[] = [];
-
   dataLoaded = false;
   constructor(private customerService: CustomerService) { }
 
