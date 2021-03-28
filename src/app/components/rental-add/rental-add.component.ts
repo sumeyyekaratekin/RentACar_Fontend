@@ -15,13 +15,13 @@ import { CartService } from 'src/app/services/cart.service';
 })
 
 export class RentalAddComponent implements OnInit {
-  rentalAddForm: FormGroup;
-  customers: CustomerDetail[] = [];
-  currentCar: CarDetail;
-  rentDate: Date;
-  returnDate: Date;
-  totalPrice:number ;
-  dataLoaded = false;
+  rentalAddForm: FormGroup
+  customers: CustomerDetail[] = []
+  currentCar: CarDetail
+  rentDate: Date
+  returnDate: Date
+  totalPrice:number
+  dataLoaded = false
 
   constructor(
     private carService: CarService,
@@ -33,23 +33,21 @@ export class RentalAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.rentDate = new Date();
-    this.returnDate = new Date();
+    this.rentDate = new Date()
+    this.returnDate = new Date()
 
-    this.getCustomerDetails();
-    this.createRentalAddForm();
+    this.getCustomerDetails()
+    this.createRentalAddForm()
 
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params.carId) {
-        this.getCarDetailsById(params.carId);
+        this.getCarDetailsById(params.carId)
       }
-    });
+    })
   }
 
   getCarDetailsById(carId: number) {
-    this.carService.getCarDetailsById(carId).subscribe((response) => {
-      this.currentCar = response.data;
-    });
+    this.carService.getCarDetailsById(carId).subscribe((response) => { this.currentCar = response.data })
   }
 
   createRentalAddForm() {
@@ -58,36 +56,42 @@ export class RentalAddComponent implements OnInit {
       rentDate: ['', Validators.required],
       carId: [''],
       returnDate: [''],
-    });
+    })
   }
+
   addToCart() {
     if (this.rentalAddForm.valid) {
-      let rentalModel = Object.assign({}, this.rentalAddForm.value);
-      rentalModel.carId = this.currentCar.id;
-      this.cartService.addToCart(rentalModel);
-      this.toastrService.success("Sepete Eklendi", this.currentCar.carName);
+      let rentalModel = Object.assign({}, this.rentalAddForm.value)
+      rentalModel.carId = this.currentCar.id
+      rentalModel.brandName = this.currentCar.brandName
+      rentalModel.colorName = this.currentCar.colorName
+      rentalModel.description = this.currentCar.description
+      rentalModel.modelYear = this.currentCar.modelYear
+      rentalModel.dailyPrice = this.currentCar.dailyPrice
+      rentalModel.totalPrice =  this.totalPrice
+      this.cartService.addToCart(rentalModel)
+      this.toastrService.success("Sepete eklendi", this.currentCar.carName)
     } else {
-      this.toastrService.error('Formunuz eksik', 'Hata');
+      this.toastrService.error('Formunuz eksik', 'Hata')
     }
   }
 
   getCustomerDetails() {
     this.customerService.getCustomerDetails().subscribe((response) => {
-      this.customers = response.data;
-      this.dataLoaded = true;
+      this.customers = response.data
+      this.dataLoaded = true
     });
   }
   
-    calcTotalPrice() {
-    let startDate = new Date(this.rentalAddForm.value.rentDate);
-     let endDate = new Date(this.rentalAddForm.value.returnDate);
-     if( isNaN(startDate.getTime()) || isNaN(endDate.getTime())   ){
-       this.totalPrice = 0;
-     } else if ( startDate > endDate ) {
-       this.totalPrice = 0;    
-     } else {
-       let dateDiff = Math.floor((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24);
-       this.totalPrice = dateDiff * this.currentCar.dailyPrice;
-     }
-   }
+  calcTotalPrice() {
+    let startDate = new Date(this.rentalAddForm.value.rentDate)
+    let endDate = new Date(this.rentalAddForm.value.returnDate)
+    if( isNaN(startDate.getTime()) || isNaN(endDate.getTime()) ){ this.totalPrice = 0 } 
+    else if ( startDate > endDate ) { this.totalPrice = 0 } 
+    else {
+      let dateDiff = Math.floor((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24)
+      this.totalPrice = dateDiff * this.currentCar.dailyPrice
+    }
+  }
+
 }
