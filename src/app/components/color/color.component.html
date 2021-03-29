@@ -2,16 +2,26 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<ul *ngIf="dataLoaded==true" class="list-group">
-
-  <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()">Tüm Renkler</li>
-  <li class="list-group-item">  
-    <input type="text" class="form-control" id="renkarama" [(ngModel)]="colorFilterText" placeholder="Renk ara">
-  </li>
-  <li 
-    *ngFor="let color of colors | colorFilter : colorFilterText"
-    (click)="setCurrentColor(color)" routerLink="cars" [queryParams]="{colorId: color.id}" queryParamsHandling="merge"
-    [class]="getCurrentColorClass(color)"> {{ color.colorName }}
-  </li>
-
-</ul>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collpased" type="button" data-bs-toggle="collapse"
+        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapsetwo">
+        RENK SEÇ
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+      data-bs-parent="#accordionFlushExample">
+      <ul *ngIf="dataLoaded==true" class="list-group">
+        <li class="list-group-item">
+          <input type="text" class="form-control" id="renkarama" [(ngModel)]="colorFilterText" placeholder="Renk ara">
+        </li>
+        <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllColorClass()">Tüm Renkler</li>
+        <li *ngFor="let color of colors | colorFilter : colorFilterText" (click)="setCurrentColor(color)"
+          routerLink="cars" [queryParams]="{colorId: color.id}" queryParamsHandling="merge"
+          [class]="getCurrentColorClass(color)"> {{ color.colorName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

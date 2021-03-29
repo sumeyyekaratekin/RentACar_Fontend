@@ -30,13 +30,9 @@
   <div class="col-sm-3">
     <input type="text" class="form-control" id="aracarama" [(ngModel)]="carFilter" placeholder="Araç ara">
   </div>
-
 </div>
-
 <br />
-
 <table *ngIf="dataLoaded == true" class="table table-bordered table-condensed table-hover">
-
   <thead class="thead-dark">
     <tr>
       <th scope="col">İsim</th>
@@ -47,7 +43,6 @@
       <th scope="col">Açıklama</th>
     </tr>
   </thead>
-
   <tbody>
     <tr *ngFor="let car of carDetails | carFilter : carFilter" [routerLink]="['/cardetail']"
       [queryParams]="{carId: car.id}">
