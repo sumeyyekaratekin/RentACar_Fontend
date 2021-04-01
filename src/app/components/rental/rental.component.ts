@@ -79,7 +79,7 @@ export class RentalComponent implements OnInit {
       data:{
         rental: this.rental
       },
-      header: 'Choose a Car',
+      header: 'Rezervasyon Yap',
       width: '20%'
     });
     this.toastrService.info("Kredi kartı ödeme sayfasına yönlendiriliyor","Yönlendiriliyor")

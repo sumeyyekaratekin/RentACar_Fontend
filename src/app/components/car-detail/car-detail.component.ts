@@ -67,7 +67,7 @@ export class CarDetailComponent implements OnInit {
       data: {
         carId: this.car.carId
       },
-      header: 'Choose a Car',
+      header: 'Rezervasyon Seç',
       width: '20%'
     });
   }
