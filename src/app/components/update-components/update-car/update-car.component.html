@@ -4,9 +4,9 @@
         <div class="col-md-12">
             <div class="p-fluid p-formgrid p-grid">
                 <form [formGroup]="carUpdateForm">
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <input id="disabled-input" formControlName="id" type="number" pInputText/>
-                    </div>
+                    </div> -->
                     <div class="mb-3" style="width: 12rem;">
                         <p-dropdown id="selectBrand" formControlName="brand" [options]="brands" placeholder="Marka seç" optionLabel="name" [showClear]="true"></p-dropdown>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <input id="dailyprice" formControlName="dailyPrice" type="number" pInputText placeholder="Günlük fiyat">   
-                            <span class="p-inputgroup-addon">₺</span>    
+                            ₺
                         </div> 
                     </div>
                     <div class="mb-3">
