@@ -1,19 +1,13 @@
+import { Time } from "@angular/common";
+
 export interface Rental{
-    id:number;
+    id?:number;
     carId:number;
-    customerId:number;
-    rentDate:Date;
-    returnDate:Date;
-}
+    userId?:number;
+    rentDate?:string;
+    rentStartDate:string;
+    rentEndDate?:string;
+    returnDate?:string;
+    totalRentPrice?:number;
 
-export interface RentalDetail extends Rental{
-    companyName:string;
-    firstName:string;
-    lastName:string;
-    brandName:string;
-    colorName:string;
-    description:string;
-    modelYear:number;
-    dailyPrice:number;
 }
-

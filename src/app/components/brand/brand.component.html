@@ -1,26 +1,2 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary d-flex mx-auto" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collpased" type="button" data-bs-toggle="collapse"
-        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        MARKA SEÇ
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-      data-bs-parent="#accordionFlushExample">
-      <ul *ngIf="dataLoaded==true" class="list-group">
-      <li class="list-group-item">
-        <input type="text" class="form-control" id="markaarama" [(ngModel)]="brandFilterText" placeholder="Marka ara">
-      </li>
-      <li (click)="clearCurrentBrand()" routerLink="/cars" [class]="getAllBrandClass()">Tüm Markalar</li>
-      <li *ngFor="let brand of brands | brandFilter : brandFilterText" (click)="setCurrentBrand(brand)"
-        routerLink="cars" [queryParams]="{brandId: brand.id}" queryParamsHandling="merge"
-        [class]="getCurrentBrandClass(brand)"> {{ brand.brandName }}
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+<p-multiSelect [options]="brands" [(ngModel)]="selectedBrands" (onChange)="setCurrentBrand()" defaultLabel="Marka seç" optionLabel="name" display="chip"></p-multiSelect>
+

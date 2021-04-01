@@ -1,30 +1,25 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-danger d-flex mx-auto" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div *ngIf="car" class="content d-flex justify-content-center">
+  <div class="row justify-content-md-center">
+      <div class="col-md-12">
+          <div class="p-fluid p-formgrid p-grid">
+              <form>
+                  <div class="mb-3">
+                      <label for="daily-price" class="form-label">Günlük Ücret:</label>
+                      <input [value]="car.dailyPrice | currency" disabled="disabled" type="text" class="form-control" id="daily-price" >
+                  </div>
+                  <div class="mb-3" style="width: 12rem;">
+                      <label for="rent-date" class="form-label">Başlangıç:</label>
+                      <input  min="{{minDate}}" (change)="controlEndDate()" [(ngModel)]="startDate" name="startDate" type="date" class="form-control" id="rent-start-date" placeholder="Bir gün seçiniz.">
+                  </div>
+                  <div class="mb-3" style="width: 12rem;">
+                      <label for="return-date" class="form-label">Bitiş:</label>
+                      <input [disabled]='!startDate' min="{{startDate}}" max="{{maxDate}}" [(ngModel)]="endDate" name="endDate" (change)="setRentable()" type="date" class="form-control" id="rent-end-date" placeholder="Bir gün seçiniz.">
+                  </div>
+              </form>
+          </div>
+          <div class="card">
+            <button [disabled]="!(startDate && endDate)" (click)="addRental()" type="button" class="btn btn-warning" data-bs-dismiss="modal">Kirala</button>
+          </div>
+      </div>
   </div>
-
-  <h5><p class="font-weight-bold">Kiralanan Araç Listesi</p></h5>
-
-  <table *ngIf="dataLoaded==true" class="table table-bordered table-condensed table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Müşteri</th>
-          <th scope="col">Marka</th>
-          <th scope="col">Model</th>
-          <th scope="col">Renk</th>
-          <th scope="col">Günlük Fiyat</th>
-          <th scope="col">Kira Tarihi</th>
-          <th scope="col">Teslim Tarihi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let rental of rentaldetails">
-          <td>{{ rental.firstName +" "+ rental.lastName }}</td>
-          <td>{{ rental.brandName }}</td>
-          <td>{{ rental.modelYear }}</td>
-          <td>{{ rental.colorName }}</td>
-          <td>{{ rental.dailyPrice }} ₺ </td>
-          <td>{{ rental.rentDate  | date : 'dd-MM-YYYY' }}</td>  
-          <td>{{(rental.returnDate == null) ? "Araç Kirada": rental.returnDate | date:'dd-MM-YYYY'}}</td>
-        </tr>
-      </tbody>
-    </table>
+</div>

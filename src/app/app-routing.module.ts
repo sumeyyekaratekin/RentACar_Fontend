@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/auth-components/login/login.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarComponent } from './components/car/car.component';
-import { CardetailComponent } from './components/cardetail/cardetail.component';
-import { CartComponent } from './components/cart/cart.component';
-import { CustomerComponent } from './components/customer/customer.component';
-import { HomeComponent } from './components/home/home.component';
-import { PaymentComponent } from './components/payment/payment.component';
-import { RentalAddComponent } from './components/rental-add/rental-add.component';
+import { CreditCardComponent } from './components/creditcard/creditcard.component';
+import { AdminComponent } from './components/pages/admin/admin.component';
+import { CarDetailsComponent } from './components/pages/car-details/car-details.component';
+import { CarsComponent } from './components/pages/cars/cars.component';
+import { HomepageComponent } from './components/pages/homepage/homepage.component';
+import { ProfileComponent } from './components/pages/profile/profile.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { AdminGuard } from './guards/admin.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  {path:"", pathMatch:"full",  component:HomeComponent},
-  {path:"cars/:brandId", component:CarComponent},
-  {path:"cars/:colorId", component:CarComponent},
-  {path:"cars/:brandId/:colorId", component:CarComponent},
-  {path:"cars", component:CarComponent},
-  {path:"cardetail/:carId", component:CardetailComponent},    
-  {path:"cardetail", component:CardetailComponent},  
-  {path:"customer", component: CustomerComponent},
-  {path:"rental/add/:carId", component: RentalAddComponent},
-  {path:"rental/add", component: RentalAddComponent},
-  {path:"cart", component:CartComponent},
-  {path:"rental", component: RentalComponent},  
-  {path:"payment", component:PaymentComponent},
+  {path:"", component:HomepageComponent},
+  {path:"cars", component:CarsComponent},
+  {path:"cardetails/:carId", component:CarDetailsComponent},
+  {path:"rental/:carId", component:RentalComponent,canActivate:[LoginGuard]},
+  {path:"creditcard/:rental", component:CreditCardComponent,canActivate:[LoginGuard]},
+  {path:"homepage", component:HomepageComponent},
+  {path: "admin", component: AdminComponent,canActivate:[AdminGuard]},
+  {path: "profile", component:ProfileComponent,canActivate:[LoginGuard]}
+
 ];
 
 @NgModule({

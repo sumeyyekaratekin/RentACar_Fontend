@@ -1,14 +1,10 @@
-export interface Car{
-    id:number;
-    carName:string;
-    brandId:number;
-    colorId:number;
-    modelYear:number;
-    dailyPrice:number;
-    description:string;
-}
-
-export interface CarDetail extends Car{
-    colorName:string;
-    brandName:string;
+export class Car{
+    id?:number;
+    brandId?:number;
+    carName?:string;
+    colorId?:number;
+    modelYear?:number;
+    dailyPrice?:number;
+    description?:string;
+    minFindeksScore?:number;
 }

@@ -1,43 +1,49 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { CarDetail } from '../models/car';
-import { Rental, RentalDetail } from '../models/rental';
-import { ListResponseModel, ResponseModel } from '../models/responseModel';
+import { ListResponseModel } from '../models/listResponseModel';
+import { RentalDetail } from '../models/rentalDetail';
+import { Rental } from '../models/rental';
+import { ResponseModel } from '../models/responseModel';
+import { Customer } from '../models/customer';
+import { CustomerService } from './customer.service';
+import { Car } from '../models/car';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
 
-  private url = environment.apiUrl + "Rentals/";
+  apiUrl = 'https://localhost:44327/api/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private customerService: CustomerService) { }
 
-  add(rental:Rental):Observable<ListResponseModel<CarDetail>> {
-    let newPath = this.url + "add";
-    return this.httpClient.post<ListResponseModel<CarDetail>>(newPath, rental);
+  getAllRentalDetail():Observable<ListResponseModel<RentalDetail>> {
+    let newPath = this.apiUrl + "rentals/getallrentaldetails"
+    return this.httpClient
+      .get<ListResponseModel<RentalDetail>>(this.apiUrl);
   }
 
-  getRentals():Observable<ListResponseModel<Rental>> {
-    let newPath = this.url + "getall";
-    return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+  getRentalsByCarId(carId:number):Observable<ListResponseModel<Rental>>{
+    let newPath = this.apiUrl + "rentals/getallbycarid?carid=" + carId
+    return this.httpClient
+    .get<ListResponseModel<Rental>>(newPath);
+  }
+  
+  addRental(rental:Rental){
+    let newPath = this.apiUrl + "rentals/add"
+    this.httpClient.post(newPath,rental).subscribe()
   }
 
-  getById(id:number):Observable<ListResponseModel<Rental>> {
-    let newPath = this.url + "getbyid?id=" + id;
-    return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+  getLastByCarId(carId:number):Observable<Rental>{
+    let newPath = this.apiUrl + "rentals/getlastbycarid?carid=" + carId
+    return this.httpClient.get<Rental>(newPath);
   }
 
-  isCarAvailable(carId:number):Observable<boolean> {
-    let newPath = this.url + "iscaravailable?carId=" + carId;
-    return this.httpClient.get<boolean>(newPath);
+  isRentable(rental:Rental):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "rentals/isrentable"
+    return this.httpClient.post<ResponseModel>(newPath,rental);
   }
-
-  getRentalDetails():Observable<ListResponseModel<RentalDetail>> {
-    let newPath = this.url + "getrentaldetails";
-    return this.httpClient.get<ListResponseModel<RentalDetail>>(newPath);
-  }  
-
 }

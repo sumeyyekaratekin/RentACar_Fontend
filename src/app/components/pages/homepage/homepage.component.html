@@ -1,0 +1,51 @@
+<div id="card-bg" class="bg-warning-gradient rounded-3 shadow">
+</div>
+<div class="container">
+  <div class="carousel align-middle">
+    <p-carousel [value]="cars" [numVisible]="3" [numScroll]="1" [circular]="true">
+      <ng-template let-car pTemplate="item">
+        <div class="car-item">
+          <div class="car-item-content">
+            <div class="p-mb-3">
+              <img [src]="car.previewImagePath" [alt]=""
+                class="car-image" style="height: 120px; width: 160px; object-fit: fill;"/>
+            </div>
+            <div>
+              
+              <hr>
+              <h4 class="p-mb-1">{{car.carName}}</h4>
+              <h6 class="p-mt-0 p-mb-3">{{car.dailyPrice}} ₺ /gün</h6>
+              <span
+                [class]=""></span>
+              <div class="car-buttons p-mt-5">
+                <p-button type="button" styleClass="p-button p-button-rounded p-mr-2 p-button-success" icon="pi pi-search" routerLink="/cardetails/{{car.carId}}"></p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div style="margin-top: 250px;"></div>
+  <div class="cards align-bottom">
+    <div class="row row-cols-3 row-cols-md-3 g-2 justify-content-around">
+      <div class="text-center card card-info bg-light rounded-3 shadow align-items-center mx-3 m-lg-0 col" style="width: 18rem;">
+        <img src="assets/images/price-icon.png">
+        <h5 class="fw-bold">Uygun Fiyatlar!</h5>
+        <p class="w-70">Sizlere sunduğumuz geniş araba seçeneklerini
+          uygun fiyatlarla değerlendirmek istemez misiniz?</p>
+      </div>
+      <div class="text-center card card-info bg-light rounded-3 shadow align-items-center mx-3 m-lg-0 col" style="width: 18rem;">
+        <img src="assets/images/place-icon.png">
+        <h5 class="fw-bold">Kolay Ulaşım!</h5>
+        <p class="w-70">Heryerden kolay ulaşım sağlanır.</p>
+      </div>
+      <div class="text-center card card-info bg-light rounded-3 shadow align-items-center mx-4 m-lg-0 col" style="width: 18rem;">
+        <img src="assets/images/shield.png">
+        <h5 class="fw-bold">Güvenli Kiralama!</h5>
+        <p class="w-70">Geniş sigorta seçenekleriyle huzurlu yolculuklarınız olsun. </p>
+      </div>
+    </div>
+  </div>
+</div>

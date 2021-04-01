@@ -1,33 +1,35 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Customer, CustomerDetail } from '../models/customer';
-import { ListResponseModel } from '../models/responseModel';
+import { ListResponseModel } from '../models/listResponseModel';
+import { Customer } from '../models/customer';
+import { SingleResponseModel } from '../models/singleResponseModel';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class CustomerService {
 
-  private url = environment.apiUrl + "Customers/";
+  apiUrl = 'https://localhost:44327/api/';
 
   constructor(private httpClient: HttpClient) { }
 
   getCustomers():Observable<ListResponseModel<Customer>> {
-    let newPath = this.url + "getall";
-    return this.httpClient.get<ListResponseModel<Customer>>(newPath);
+    let newPath = this.apiUrl + 'customers/getall'
+    return this.httpClient
+      .get<ListResponseModel<Customer>>(newPath);
   }
 
-  getById(id:number):Observable<ListResponseModel<Customer>> {
-    let newPath = this.url + "getbyid?id=" + id;
-    return this.httpClient.get<ListResponseModel<Customer>>(newPath);
+  getCustomerById(id:number):Observable<SingleResponseModel<Customer>>{
+    let newPath = this.apiUrl + "customers/getbyid?id=" + id
+    return this.httpClient
+    .get<SingleResponseModel<Customer>>(newPath)
   }
-  
-  getCustomerDetails():Observable<ListResponseModel<CustomerDetail>> {
-    let newPath = this.url + "getcustomerdetails";
-    return this.httpClient.get<ListResponseModel<CustomerDetail>>(newPath);
+
+  update(customer:Customer):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "customers/update"
+    return this.httpClient
+    .put<ResponseModel>(newPath,customer)
   }
-  
 }

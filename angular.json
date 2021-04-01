@@ -1,12 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "df362430-27aa-4ab2-a1e3-7b77a3c772dc"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rentacar-frontend": {
+    "rent-a-car": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rentacar-frontend",
+            "outputPath": "dist/rent-a-car",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,14 +28,16 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootswatch/dist/Minty/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/fluent-light/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -74,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rentacar-frontend:build"
+            "browserTarget": "rent-a-car:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rentacar-frontend:build:production"
+              "browserTarget": "rent-a-car:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rentacar-frontend:build"
+            "browserTarget": "rent-a-car:build"
           }
         },
         "test": {
@@ -122,16 +121,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rentacar-frontend:serve"
+            "devServerTarget": "rent-a-car:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rentacar-frontend:serve:production"
+              "devServerTarget": "rent-a-car:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "rentacar-frontend"
+  "defaultProject": "rent-a-car"
 }

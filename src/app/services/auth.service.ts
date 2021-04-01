@@ -1,16 +1,18 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
-import { ListResponseModel, ResponseModel, SingleResponseModel } from '../models/responseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
-//import jwt_decode from 'jwt-decode';
 import { LocalStorageService } from './local-storage.service';
+import { ListResponseModel } from '../models/listResponseModel';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
+import { OperationClaim } from '../models/operationClaim';
 import { PasswordChangeModel } from '../models/passwordChangeModel';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class AuthService {
   userName: string;
   currentUserId: number;
   roles: string[] = [];
-  private url = environment.apiUrl + "auth/";
+  apiUrl = 'https://localhost:44327/api/';
   jwtHelper:JwtHelperService = new JwtHelperService();
 
   constructor(
@@ -32,7 +34,7 @@ export class AuthService {
 
 
   login(loginModel:LoginModel){
-    let newPath = this.url + "login" 
+    let newPath = this.apiUrl + "auth/login"
     this.httpClient
     .post<SingleResponseModel<TokenModel>>(newPath,loginModel).subscribe(response => {
       if(response.success){
@@ -40,7 +42,7 @@ export class AuthService {
         this.toastrService.success("Giriş yapıldı","Başarılı")
         this.setUserName()
         this.setCurrentUserId()
-       // this.setRoles()
+        this.setRoles()
         setTimeout(function(){
           location.reload()
         },400)
@@ -51,7 +53,7 @@ export class AuthService {
   }
 
   register(registerModel:RegisterModel){
-    let newPath = this.url + "register" 
+    let newPath = this.apiUrl + "auth/register"
     this.httpClient
     .post<SingleResponseModel<TokenModel>>(newPath,registerModel).subscribe(response => {
       if(response.success){
@@ -59,7 +61,7 @@ export class AuthService {
         this.toastrService.success("Kayıt olundu","Başarılı")
         this.setUserName()
         this.setCurrentUserId()
-      //  this.setRoles()
+        this.setRoles()
         setTimeout(function(){
           location.reload()
         },400)
@@ -70,7 +72,7 @@ export class AuthService {
   }
 
   changePassword(passwordChangeModel:PasswordChangeModel):Observable<ResponseModel>{
-    let newPath = this.url + "changepassword"
+    let newPath = this.apiUrl + "auth/changepassword"
     return this.httpClient
     .put<ResponseModel>(newPath,passwordChangeModel)
   }
@@ -79,15 +81,15 @@ export class AuthService {
     if(this.loggedIn()){
       this.setCurrentUserId()
       this.setUserName()
-     // await this.setRoles()
+      await this.setRoles()
     }
   }
 
-  // async setRoles(){
-  //   if((this.roles == undefined || this.roles.length === 0) && this.storageService.getToken() != null && this.loggedIn()){
-  //     this.roles = (await this.httpClient.get<ListResponseModel<OperationClaim>>(this.url + "userclaims/getbyuser?id="+ this.currentUserId).toPromise()).data.map(r => r.name)
-  //   }
-  // }
+  async setRoles(){
+    if((this.roles == undefined || this.roles.length === 0) && this.storageService.getToken() != null && this.loggedIn()){
+      this.roles = (await this.httpClient.get<ListResponseModel<OperationClaim>>(this.apiUrl + "userclaims/getbyuser?id="+ this.currentUserId).toPromise()).data.map(r => r.name)
+    }
+  }
 
   loggedIn(): boolean {
     let isExpired = this.jwtHelper.isTokenExpired(this.storageService.getToken());
@@ -133,7 +135,7 @@ export class AuthService {
   }
 
   async haveRole(role: string): Promise<boolean> {
-   // await this.setRoles()
+    await this.setRoles()
     var check = this.roles.some(item => {
       return item == role;
     })
@@ -141,3 +143,4 @@ export class AuthService {
   }
   
 }
+
