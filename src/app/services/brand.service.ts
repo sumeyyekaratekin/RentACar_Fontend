@@ -4,28 +4,29 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Brand } from '../models/brand';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class BrandService {
 
-  apiUrl = 'https://localhost:44327/api/';
+  private url = environment.apiUrl +"Brands/";
 
   constructor(private httpClient: HttpClient) { }
 
   getBrands():Observable<ListResponseModel<Brand>> {
     return this.httpClient
-      .get<ListResponseModel<Brand>>(this.apiUrl + 'brands/getall');
+      .get<ListResponseModel<Brand>>(this.url + 'getall');
   }
 
   addBrand(brand:Brand):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "brands/add"
+    let newPath = this.url + "add"
     return this.httpClient
     .post<ResponseModel>(newPath,brand)
   }
 
   deleteBrand(brand:Brand):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "brands/delete"
+    let newPath = this.url + "delete"
     return this.httpClient
     .request<ResponseModel>("DELETE",newPath,{
       body: brand
@@ -33,7 +34,7 @@ export class BrandService {
   }
 
   updateBrand(brand:Brand):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "brands/update"
+    let newPath = this.url + "update"
     return this.httpClient
     .put<ResponseModel>(newPath,brand)
   }

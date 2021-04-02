@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from '../models/operationClaim';
 import { PasswordChangeModel } from '../models/passwordChangeModel';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class AuthService {
   userName: string;
   currentUserId: number;
   roles: string[] = [];
-  apiUrl = 'https://localhost:44327/api/';
+  private url = environment.apiUrl;
   jwtHelper:JwtHelperService = new JwtHelperService();
 
   constructor(
@@ -34,7 +35,7 @@ export class AuthService {
 
 
   login(loginModel:LoginModel){
-    let newPath = this.apiUrl + "auth/login"
+    let newPath = this.url + "auth/login"
     this.httpClient
     .post<SingleResponseModel<TokenModel>>(newPath,loginModel).subscribe(response => {
       if(response.success){
@@ -53,7 +54,7 @@ export class AuthService {
   }
 
   register(registerModel:RegisterModel){
-    let newPath = this.apiUrl + "auth/register"
+    let newPath = this.url + "auth/register"
     this.httpClient
     .post<SingleResponseModel<TokenModel>>(newPath,registerModel).subscribe(response => {
       if(response.success){
@@ -72,7 +73,7 @@ export class AuthService {
   }
 
   changePassword(passwordChangeModel:PasswordChangeModel):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "auth/changepassword"
+    let newPath = this.url + "auth/changepassword"
     return this.httpClient
     .put<ResponseModel>(newPath,passwordChangeModel)
   }
@@ -87,7 +88,7 @@ export class AuthService {
 
   async setRoles(){
     if((this.roles == undefined || this.roles.length === 0) && this.storageService.getToken() != null && this.loggedIn()){
-      this.roles = (await this.httpClient.get<ListResponseModel<OperationClaim>>(this.apiUrl + "userclaims/getbyuser?id="+ this.currentUserId).toPromise()).data.map(r => r.name)
+      this.roles = (await this.httpClient.get<ListResponseModel<OperationClaim>>(this.url + "userclaims/getbyuser?id="+ this.currentUserId).toPromise()).data.map(r => r.name)
     }
   }
 

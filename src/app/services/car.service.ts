@@ -6,24 +6,26 @@ import { CarDetail } from '../models/carDetail';
 import { Car } from '../models/car';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
 
-  apiUrl = 'https://localhost:44327/api/';
+  private url = environment.apiUrl + "cars/";
+
 
   constructor(private httpClient: HttpClient) { }
 
   getCarById(id:Number):Observable<SingleResponseModel<Car>>{
-    let newPath = this.apiUrl + "cars/GetById?id=" + id
+    let newPath = this.url + "GetById?id=" + id
     return this.httpClient
     .get<SingleResponseModel<Car>>(newPath)
   }
 
   getCarsDetails(brands?:number[],colors?:number[],carId?:number):Observable<ListResponseModel<CarDetail>> {
-    let newPath = this.apiUrl + "cars/getcarsdetails"
+    let newPath = this.url + "getcarsdetails"
     let queryParams = new HttpParams()
     brands?.forEach(element => {
       let brand = String(element)
@@ -38,13 +40,13 @@ export class CarService {
   }
 
   addCar(car:Car):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "cars/add"
+    let newPath = this.url + "add"
     return this.httpClient
     .post<ResponseModel>(newPath,car)
   }
 
   deleteCar(car:Car):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "cars/delete"
+    let newPath = this.url + "delete"
     return this.httpClient
     .request<ResponseModel>("DELETE",newPath,{
       body: car
@@ -52,7 +54,7 @@ export class CarService {
   }
 
   updateCar(car:Car):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "cars/update"
+    let newPath = this.url + "update"
     return this.httpClient
     .put<ResponseModel>(newPath,car)
   }

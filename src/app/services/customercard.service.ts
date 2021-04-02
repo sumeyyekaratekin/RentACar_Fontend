@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CustomerCard } from '../models/customerCard';
 import { FakeCard } from '../models/fakeCard';
 import { ListResponseModel } from '../models/listResponseModel';
@@ -16,17 +17,17 @@ export class CustomercardService {
     private httpClient:HttpClient,
     private authService:AuthService) { }
 
-  apiUrl = 'https://localhost:44327/api/';
+    private url = environment.apiUrl + "customercards/";
 
   saveCard(fakeCard:FakeCard): Observable<ResponseModel>{
     let customerCard:CustomerCard = {customerId:this.authService.currentUserId,cardId:fakeCard.id}
-    let newPath = this.apiUrl + "customercards/add"
+    let newPath = this.url + "add"
     return this.httpClient.post<ResponseModel>(newPath,customerCard)
   }
 
   deleteCard(fakeCard:FakeCard):Observable<ResponseModel>{
     let customerCard:CustomerCard = {customerId:this.authService.currentUserId,cardId:fakeCard.id}
-    let newPath = this.apiUrl + "customercards/delete"
+    let newPath = this.url + "delete"
     return this.httpClient
       .request<ResponseModel>("DELETE",newPath,{
       body: customerCard
@@ -34,7 +35,7 @@ export class CustomercardService {
   }
 
   getByCustomerId(customerId:number):Observable<ListResponseModel<CustomerCard>>{
-    let newPath = this.apiUrl + "customercards/getbycustomerid?customerId=" + customerId
+    let newPath = this.url + "getbycustomerid?customerId=" + customerId
     return this.httpClient
       .get<ListResponseModel<CustomerCard>>(newPath)
   }

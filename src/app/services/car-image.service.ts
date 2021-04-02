@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CarImage } from '../models/carImage';
 import { Customer } from '../models/customer';
 import { ListResponseModel } from '../models/listResponseModel';
@@ -10,16 +11,16 @@ import { ListResponseModel } from '../models/listResponseModel';
 })
 export class CarImageService {
 
-  apiUrl = 'https://localhost:44327/api/';
+  private url = environment.apiUrl + "carimages/";
 
   constructor(private httpClient: HttpClient) { }
 
   getCarImages():Observable<ListResponseModel<CarImage>> {
     return this.httpClient
-      .get<ListResponseModel<CarImage>>(this.apiUrl + 'carimages/getall');
+      .get<ListResponseModel<CarImage>>(this.url + 'getall');
   }
   getCarImageByCarId(carId:number):Observable<ListResponseModel<CarImage>>{
     return this.httpClient
-    .get<ListResponseModel<CarImage>>(this.apiUrl + 'carimages/getallbycarid?carId=' + carId)
+    .get<ListResponseModel<CarImage>>(this.url + 'getallbycarid?carId=' + carId)
   }
 }

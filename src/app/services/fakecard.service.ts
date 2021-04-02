@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { FakeCard } from '../models/fakeCard';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
@@ -13,25 +14,25 @@ export class FakecardService {
 
   constructor(private httpClient: HttpClient) { }
 
-  apiUrl = 'https://localhost:44327/api/';
+  private url = environment.apiUrl + "fakecards/";
 
   isCardExist(fakeCard:FakeCard):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "fakecards/iscardexist"
+    let newPath = this.url + "iscardexist"
     return this.httpClient.post<ResponseModel>(newPath,fakeCard);
   }
 
   getCardByNumber(cardNumber:string):Observable<ListResponseModel<FakeCard>>{
-    let newPath = this.apiUrl + "fakecards/getbycardnumber?cardnumber=" + cardNumber
+    let newPath = this.url + "getbycardnumber?cardnumber=" + cardNumber
     return this.httpClient.get<ListResponseModel<FakeCard>>(newPath);
   }
 
   getCardById(id:number):Observable<SingleResponseModel<FakeCard>>{
-    let newPath = this.apiUrl + "fakecards/getbyid?id=" + id
+    let newPath = this.url + "getbyid?id=" + id
     return this.httpClient.get<SingleResponseModel<FakeCard>>(newPath);
   }
 
   updateCard(fakeCard:FakeCard):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "fakecards/update"
+    let newPath = this.url + "update"
     return this.httpClient.put<ResponseModel>(newPath,fakeCard)
   }
 }

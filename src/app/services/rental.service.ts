@@ -8,42 +8,42 @@ import { ResponseModel } from '../models/responseModel';
 import { Customer } from '../models/customer';
 import { CustomerService } from './customer.service';
 import { Car } from '../models/car';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentalService {
 
-  apiUrl = 'https://localhost:44327/api/';
-
+  private url = environment.apiUrl + "rentals/";
   constructor(
     private httpClient: HttpClient,
     private customerService: CustomerService) { }
 
   getAllRentalDetail():Observable<ListResponseModel<RentalDetail>> {
-    let newPath = this.apiUrl + "rentals/getallrentaldetails"
+    let newPath = this.url + "getallrentaldetails"
     return this.httpClient
-      .get<ListResponseModel<RentalDetail>>(this.apiUrl);
+      .get<ListResponseModel<RentalDetail>>(this.url);
   }
 
   getRentalsByCarId(carId:number):Observable<ListResponseModel<Rental>>{
-    let newPath = this.apiUrl + "rentals/getallbycarid?carid=" + carId
+    let newPath = this.url + "getallbycarid?carid=" + carId
     return this.httpClient
     .get<ListResponseModel<Rental>>(newPath);
   }
   
   addRental(rental:Rental){
-    let newPath = this.apiUrl + "rentals/add"
+    let newPath = this.url + "add"
     this.httpClient.post(newPath,rental).subscribe()
   }
 
   getLastByCarId(carId:number):Observable<Rental>{
-    let newPath = this.apiUrl + "rentals/getlastbycarid?carid=" + carId
+    let newPath = this.url + "getlastbycarid?carid=" + carId
     return this.httpClient.get<Rental>(newPath);
   }
 
   isRentable(rental:Rental):Observable<ResponseModel>{
-    let newPath = this.apiUrl + "rentals/isrentable"
+    let newPath = this.url + "isrentable"
     return this.httpClient.post<ResponseModel>(newPath,rental);
   }
 }
