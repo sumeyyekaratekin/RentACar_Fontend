@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from '../models/listResponseModel';
 import { CarDetail } from '../models/carDetail';
 import { Car } from '../models/car';
-import { ResponseModel } from '../models/responseModel';
-import { SingleResponseModel } from '../models/singleResponseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

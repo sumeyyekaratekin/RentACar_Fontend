@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CustomerCard } from '../models/customerCard';
 import { FakeCard } from '../models/fakeCard';
-import { ListResponseModel } from '../models/listResponseModel';
-import { ResponseModel } from '../models/responseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 import { AuthService } from './auth.service';
 
 @Injectable({

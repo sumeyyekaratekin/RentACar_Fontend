@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CarImage } from '../models/carImage';
 import { Customer } from '../models/customer';
-import { ListResponseModel } from '../models/listResponseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'

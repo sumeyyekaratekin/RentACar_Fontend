@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FakeCard } from '../models/fakeCard';
-import { ListResponseModel } from '../models/listResponseModel';
-import { ResponseModel } from '../models/responseModel';
-import { SingleResponseModel } from '../models/singleResponseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'

@@ -1,18 +1,15 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
-import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageService } from './local-storage.service';
-import { ListResponseModel } from '../models/listResponseModel';
 import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from '../models/operationClaim';
 import { PasswordChangeModel } from '../models/passwordChangeModel';
-import { ResponseModel } from '../models/responseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

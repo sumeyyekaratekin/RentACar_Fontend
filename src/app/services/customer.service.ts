@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ListResponseModel } from '../models/listResponseModel';
 import { Customer } from '../models/customer';
-import { SingleResponseModel } from '../models/singleResponseModel';
-import { ResponseModel } from '../models/responseModel';
+import { ResponseModel ,ListResponseModel,SingleResponseModel } from '../models/responseModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class CustomerService {
 
   private url = environment.apiUrl + "customers/";
-  
+
   constructor(private httpClient: HttpClient) { }
 
   getCustomers():Observable<ListResponseModel<Customer>> {
