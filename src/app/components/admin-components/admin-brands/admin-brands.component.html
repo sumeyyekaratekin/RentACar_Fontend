@@ -10,7 +10,9 @@
             Markalar
             <span>
                 <i class="pi pi-search"></i>
-                <input style="margin-left: 10px;" pInputText type="text" (input)="cartable.filterGlobal($any($event.target).value, 'contains')" placeholder="Arama yap" />
+                <input style="margin-left: 10px;" pInputText type="text" 
+                (input)="cartable.filterGlobal($any($event.target).value, 'contains')"
+                 placeholder="Arama yap" />
             </span>
         </div>
     </ng-template>

@@ -2,10 +2,13 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div *ngIf="dataLoaded">
-  <div class="mb-2">
-    <input type="text" [(ngModel)]="filterCarText" class="form-control" id="filterCarText"
-      placeholder="Aramak istediğiniz..">
-  </div>
+  <span>
+    <div class="row">
+      <input style="margin-left: 10px; width: 350px" pInputText type="text" [(ngModel)]="filterCarText"
+        class="form-control" id="filterCarText" placeholder="Aramak istediğiniz..">
+    </div>
+  </span>
+  
   <div class="d-flex flex-wrap justify-content-center justify-content-xl-start"
     style="gap: 0.75em; padding: 10;margin-top: 25px;">
     <div *ngFor="let car of cars | carFilter:filterCarText" class="card" style="width: 15rem;">
